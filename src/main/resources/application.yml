@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: car-review
+  data:
+    mongodb:
+      database: car
+      uri: ${DATABASE_URI}
+
