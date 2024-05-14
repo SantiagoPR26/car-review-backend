@@ -7,13 +7,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Car {
+public class Post {
 
     private Long id;
-    private String photo;
-    private String name;
-    private String brand;
-    private String model;
-    private String plate;
+    private Car car;
+    private Comment comment;
+    private Integer viewCount;
 
 }
