@@ -1,21 +1,17 @@
-package dev.uni.domain.entities;
+package dev.uni.infrastructure.repository.comment;
 
+import dev.uni.domain.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Document(collection = "comments")
-public class Comment {
+public class CommentDto {
 
-    @Id
-    private int id;
     private String content;
     private LocalDateTime date;
     private User username;
