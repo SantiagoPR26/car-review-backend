@@ -1,6 +1,7 @@
 package dev.uni.application;
 
 import dev.uni.domain.entities.Car;
+import dev.uni.domain.entities.Comment;
 import dev.uni.domain.services.CarService;
 import dev.uni.infrastructure.repository.car.CarDto;
 import lombok.AllArgsConstructor;
@@ -13,7 +14,30 @@ public class CarApplication {
     private final CarService carService;
 
     public Car saveCar(Car car) {
-        CarDto carDto = new CarDto(car.getPhoto(), car.getName(), car.getBrand(), car.getModel(), car.getPlate());
+        CarDto carDto = new CarDto(car.getPhoto(),
+                car.getName(),
+                car.getBrand(),
+                car.getModel(),
+                car.getPlate(),
+                car.getCommentList(),
+                car.getViewCount());
         return carService.save(carDto);
+    }
+
+    public void addComment(int id, Comment comment) {
+        Car car = carService.getOne(id);
+        car.getCommentList().add(comment);
+        CarDto carDto = new CarDto(car.getPhoto(),
+                car.getName(),
+                car.getBrand(),
+                car.getModel(),
+                car.getPlate(),
+                car.getCommentList(),
+                car.getViewCount());
+        carService.save(carDto);
+    }
+
+    public Car getOne(int id) {
+        return carService.getOne(id);
     }
 }

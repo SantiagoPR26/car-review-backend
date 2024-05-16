@@ -17,7 +17,8 @@ public class CommentApplication {
                 comment.getDate(),
                 comment.getUsername(),
                 comment.getLike(),
-                comment.getDislike());
+                comment.getDislike(),
+                comment.getCarId());
         return commentService.save(commentDto);
     }
 }

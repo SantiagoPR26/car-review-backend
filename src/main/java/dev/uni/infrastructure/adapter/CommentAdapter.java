@@ -22,9 +22,11 @@ public class CommentAdapter implements CommentService {
         Comment comment = new Comment(id, commentDto.getContent(), commentDto.getDate(),
                 commentDto.getUsername(),
                 commentDto.getLike(),
-                commentDto.getDislike());
+                commentDto.getDislike(),
+                commentDto.getCarId());
         return commentRepository.save(comment);
     }
+
     @Override
     public List<Comment> getAll(){ return commentRepository.findAll();}
 
@@ -35,9 +37,5 @@ public class CommentAdapter implements CommentService {
         List<Comment> comments = commentRepository.findAll();
         return comments.isEmpty() ? 1 : comments.stream().max(Comparator.comparing(Comment::getId)).get().getId() + 1;
     }
-
-
-
-
 
 }

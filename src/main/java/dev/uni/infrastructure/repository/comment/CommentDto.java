@@ -12,9 +12,11 @@ import java.time.LocalDateTime;
 @Data
 public class CommentDto {
 
+    private int id;
     private String content;
     private LocalDateTime date;
-    private User username;
+    private String username;
     private int like;
     private int dislike;
+    private int carId;
 }

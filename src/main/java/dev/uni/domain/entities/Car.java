@@ -4,7 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,5 +22,11 @@ public class Car {
     private String brand;
     private String model;
     private String plate;
+    @DBRef
+    private List<Comment> commentList;
+    private int viewCount;
 
+    public void addComment(Comment comment) {
+        this.commentList.add(comment);
+    }
 }
