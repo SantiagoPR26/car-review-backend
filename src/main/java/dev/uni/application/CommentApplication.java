@@ -13,7 +13,7 @@ public class CommentApplication {
     private final CommentService commentService;
 
     public Comment saveComment(Comment comment){
-        CommentDto commentDto = new CommentDto(comment.getContent(),
+        CommentDto commentDto = new CommentDto(1,comment.getContent(),
                 comment.getDate(),
                 comment.getUsername(),
                 comment.getLike(),

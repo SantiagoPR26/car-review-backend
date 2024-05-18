@@ -21,5 +21,4 @@ public class CommentController {
     public ResponseEntity<Comment> saveComment(@RequestBody Comment comment){
         return new ResponseEntity<>(commentApplication.saveComment(comment), HttpStatus.CREATED);
     }
-
 }

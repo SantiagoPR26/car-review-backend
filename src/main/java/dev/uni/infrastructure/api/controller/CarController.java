@@ -24,7 +24,7 @@ public class CarController {
         return new ResponseEntity<>(carApplication.saveCar(car), HttpStatus.CREATED);
     }
 
-    @PostMapping("/addComent")
+    @PostMapping("/addComment")
     public ResponseEntity<Car> addCommentCar(@RequestBody CommentDto commentDto) {
         int carId = commentDto.getCarId();
         Comment comment = new Comment(commentDto.getId(), commentDto.getContent(), commentDto.getDate(),

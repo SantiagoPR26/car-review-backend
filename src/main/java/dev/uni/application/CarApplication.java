@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CarApplication {
 
+    private final CommentApplication commentApplication;
     private final CarService carService;
 
     public Car saveCar(Car car) {
@@ -21,6 +22,11 @@ public class CarApplication {
                 car.getPlate(),
                 car.getCommentList(),
                 car.getViewCount());
+
+        for (Comment comment : car.getCommentList()) {
+            commentApplication.saveComment(comment);
+        }
+
         return carService.save(carDto);
     }
 
