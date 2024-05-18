@@ -30,19 +30,6 @@ public class CarApplication {
         return carService.save(carDto);
     }
 
-    public void addComment(int id, Comment comment) {
-        Car car = carService.getOne(id);
-        car.getCommentList().add(comment);
-        CarDto carDto = new CarDto(car.getPhoto(),
-                car.getName(),
-                car.getBrand(),
-                car.getModel(),
-                car.getPlate(),
-                car.getCommentList(),
-                car.getViewCount());
-        carService.save(carDto);
-    }
-
     public Car getOne(int id) {
         return carService.getOne(id);
     }

@@ -15,4 +15,6 @@ public interface CarService {
     List<Car> getAll();
 
     Car getOne(int id);
+
+    void update(int id, CarDto carDto);
 }

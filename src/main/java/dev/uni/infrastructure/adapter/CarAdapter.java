@@ -47,6 +47,18 @@ public class CarAdapter implements CarService {
         return carRepository.findById(id).get();
     }
 
+    @Override
+    public void update(int id, CarDto carDto) {
+        Car car = carRepository.findById(id).get();
+        car.setPhoto(carDto.getPhoto());
+        car.setName(carDto.getName());
+        car.setBrand(carDto.getBrand());
+        car.setModel(carDto.getModel());
+        car.setPlate(car.getPlate());
+        car.setCommentList(carDto.getCommentList());
+        carRepository.save(car);
+    }
+
 
     private int autoIncrement() {
         List<Car> cars = carRepository.findAll();

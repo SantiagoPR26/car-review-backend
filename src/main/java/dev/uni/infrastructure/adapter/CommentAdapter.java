@@ -1,5 +1,6 @@
 package dev.uni.infrastructure.adapter;
 
+import dev.uni.domain.entities.Car;
 import dev.uni.domain.entities.Comment;
 import dev.uni.domain.services.CommentService;
 import dev.uni.infrastructure.repository.comment.CommentDto;
@@ -28,12 +29,28 @@ public class CommentAdapter implements CommentService {
     }
 
     @Override
-    public List<Comment> getAll(){ return commentRepository.findAll();}
+    public List<Comment> getAll() {
+        return commentRepository.findAll();
+    }
 
     @Override
-    public Comment getOne(int id){ return commentRepository.findById(id).get(); }
+    public Comment getOne(int id) {
+        return commentRepository.findById(id).get();
+    }
 
-    private int autoIncrement(){
+    @Override
+    public void update(int id, CommentDto commentDto) {
+        Comment comment = commentRepository.findById(id).get();
+        comment.setContent(commentDto.getContent());
+        comment.setDate(commentDto.getDate());
+        comment.setUsername(commentDto.getUsername());
+        comment.setLike(commentDto.getLike());
+        comment.setDislike(comment.getDislike());
+        comment.setCarId(commentDto.getCarId());
+        commentRepository.save(comment);
+    }
+
+    private int autoIncrement() {
         List<Comment> comments = commentRepository.findAll();
         return comments.isEmpty() ? 1 : comments.stream().max(Comparator.comparing(Comment::getId)).get().getId() + 1;
     }

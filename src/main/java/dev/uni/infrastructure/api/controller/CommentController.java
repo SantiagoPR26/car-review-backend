@@ -5,10 +5,7 @@ import dev.uni.domain.entities.Comment;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor
 @RestController
@@ -18,7 +15,17 @@ public class CommentController {
     private final CommentApplication commentApplication;
 
     @PostMapping
-    public ResponseEntity<Comment> saveComment(@RequestBody Comment comment){
+    public ResponseEntity<Comment> saveComment(@RequestBody Comment comment) {
         return new ResponseEntity<>(commentApplication.saveComment(comment), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/like")
+    public void addLike(@RequestParam int id) {
+        commentApplication.updateLike(id);
+    }
+
+    @PutMapping("/dislike")
+    public void addDislike(@RequestParam int id) {
+        commentApplication.updateDislike(id);
     }
 }
