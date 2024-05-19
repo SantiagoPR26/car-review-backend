@@ -41,7 +41,6 @@ public class CommentApplication {
     }
 
     public void updateLike(int id) {
-        int one = 1;
         Comment comment = commentService.getOne(id);
         CommentDto commentDto = new CommentDto(comment.getContent(),
                 comment.getDate(),
@@ -49,12 +48,11 @@ public class CommentApplication {
                 comment.getLike(),
                 comment.getDislike(),
                 comment.getCarId());
-        commentDto.setLike(one++);
+        commentDto.setLike(comment.getLike() + 1);
         commentService.update(id, commentDto);
     }
 
     public void updateDislike(int id) {
-        int one = 1;
         Comment comment = commentService.getOne(id);
         CommentDto commentDto = new CommentDto(comment.getContent(),
                 comment.getDate(),
@@ -62,7 +60,7 @@ public class CommentApplication {
                 comment.getLike(),
                 comment.getDislike(),
                 comment.getCarId());
-        commentDto.setDislike(one++);
+        commentDto.setDislike(comment.getDislike() + 1);
         commentService.update(id, commentDto);
     }
 }

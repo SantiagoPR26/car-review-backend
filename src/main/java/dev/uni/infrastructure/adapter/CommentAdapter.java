@@ -45,7 +45,7 @@ public class CommentAdapter implements CommentService {
         comment.setDate(commentDto.getDate());
         comment.setUsername(commentDto.getUsername());
         comment.setLike(commentDto.getLike());
-        comment.setDislike(comment.getDislike());
+        comment.setDislike(commentDto.getDislike());
         comment.setCarId(commentDto.getCarId());
         commentRepository.save(comment);
     }
