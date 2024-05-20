@@ -26,7 +26,4 @@ public class Car {
     private List<Comment> commentList;
     private int viewCount;
 
-    public void addComment(Comment comment) {
-        this.commentList.add(comment);
-    }
 }

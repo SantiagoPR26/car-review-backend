@@ -7,6 +7,8 @@ import dev.uni.infrastructure.repository.car.CarDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @AllArgsConstructor
 @Service
 public class CarApplication {
@@ -30,7 +32,10 @@ public class CarApplication {
         return carService.save(carDto);
     }
 
-    public Car getOne(int id) {
-        return carService.getOne(id);
+    public List<Car> getAll() {
+        return carService.getAll();
     }
+
+
+
 }

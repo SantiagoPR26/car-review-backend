@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @AllArgsConstructor
 @RestController
 @RequestMapping("/comment")
@@ -14,7 +15,7 @@ public class CommentController {
 
     private final CommentApplication commentApplication;
 
-    @PostMapping
+    @PostMapping("save")
     public ResponseEntity<Comment> saveComment(@RequestBody Comment comment) {
         return new ResponseEntity<>(commentApplication.saveComment(comment), HttpStatus.CREATED);
     }
