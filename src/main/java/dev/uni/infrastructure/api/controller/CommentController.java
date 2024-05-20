@@ -1,11 +1,32 @@
 package dev.uni.infrastructure.api.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import dev.uni.application.CommentApplication;
+import dev.uni.domain.entities.Comment;
+import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
+@AllArgsConstructor
 @RestController
 @RequestMapping("/comment")
 public class CommentController {
 
+    private final CommentApplication commentApplication;
 
+    @PostMapping("save")
+    public ResponseEntity<Comment> saveComment(@RequestBody Comment comment) {
+        return new ResponseEntity<>(commentApplication.saveComment(comment), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/like")
+    public void addLike(@RequestParam int id) {
+        commentApplication.updateLike(id);
+    }
+
+    @PutMapping("/dislike")
+    public void addDislike(@RequestParam int id) {
+        commentApplication.updateDislike(id);
+    }
 }

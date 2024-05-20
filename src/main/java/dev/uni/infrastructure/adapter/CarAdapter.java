@@ -1,6 +1,7 @@
 package dev.uni.infrastructure.adapter;
 
 import dev.uni.domain.entities.Car;
+import dev.uni.domain.entities.Comment;
 import dev.uni.domain.services.CarService;
 import dev.uni.infrastructure.repository.car.CarDto;
 import dev.uni.infrastructure.repository.car.CarRepository;
@@ -19,9 +20,21 @@ public class CarAdapter implements CarService {
     @Override
     public Car save(CarDto carDto) {
         int id = autoIncrement();
-        Car car = new Car(id, carDto.getPhoto(), carDto.getName(), carDto.getBrand(),
-                carDto.getModel(), carDto.getPlate());
+        Car car = new Car(id, carDto.getPhoto(),
+                carDto.getName(),
+                carDto.getBrand(),
+                carDto.getModel(),
+                carDto.getPlate(),
+                carDto.getCommentList(),
+                carDto.getViewCount());
         return carRepository.save(car);
+    }
+
+    @Override
+    public void addComment(int id, Comment comment) {
+        Car car = carRepository.findById(id).get();
+        car.getCommentList().add(comment);
+        carRepository.save(car);
     }
 
     @Override
@@ -34,9 +47,23 @@ public class CarAdapter implements CarService {
         return carRepository.findById(id).get();
     }
 
+    @Override
+    public void update(int id, CarDto carDto) {
+        Car car = carRepository.findById(id).get();
+        car.setPhoto(carDto.getPhoto());
+        car.setName(carDto.getName());
+        car.setBrand(carDto.getBrand());
+        car.setModel(carDto.getModel());
+        car.setPlate(car.getPlate());
+        car.setCommentList(carDto.getCommentList());
+        carRepository.save(car);
+    }
+
 
     private int autoIncrement() {
         List<Car> cars = carRepository.findAll();
         return cars.isEmpty() ? 1 : cars.stream().max(Comparator.comparing(Car::getId)).get().getId() + 1;
     }
+
+
 }
