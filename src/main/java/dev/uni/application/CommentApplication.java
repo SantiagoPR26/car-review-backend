@@ -30,12 +30,15 @@ public class CommentApplication {
     public void addComment(int id, Comment comment) {
         Car car = carService.getOne(id);
         car.getCommentList().add(comment);
-        CarDto carDto = new CarDto(car.getPhoto(),
+        CarDto carDto = new CarDto(car.getPrice(),
+                car.getPhoto(),
                 car.getName(),
+                car.getKm(),
                 car.getBrand(),
                 car.getModel(),
                 car.getPlate(),
                 car.getCommentList(),
+                car.getUbication(),
                 car.getViewCount());
         carService.update(id, carDto);
     }

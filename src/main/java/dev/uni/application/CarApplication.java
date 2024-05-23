@@ -17,25 +17,31 @@ public class CarApplication {
     private final CarService carService;
 
     public Car saveCar(Car car) {
-        CarDto carDto = new CarDto(car.getPhoto(),
+        CarDto carDto = new CarDto(car.getPrice(),
+                car.getPhoto(),
                 car.getName(),
+                car.getKm(),
                 car.getBrand(),
                 car.getModel(),
                 car.getPlate(),
                 car.getCommentList(),
+                car.getUbication(),
                 car.getViewCount());
+
+        carService.save(carDto);
 
         for (Comment comment : car.getCommentList()) {
             commentApplication.saveComment(comment);
         }
 
-        return carService.save(carDto);
+        return car;
     }
 
     public List<Car> getAll() {
         return carService.getAll();
     }
 
-
-
+    public Car getOne(int id) {
+        return carService.getOne(id);
+    }
 }

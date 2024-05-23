@@ -17,13 +17,16 @@ public class Car {
 
     @Id
     private int id;
+    private String price;
     private String photo;
     private String name;
+    private String km;
     private String brand;
     private String model;
     private String plate;
     @DBRef
     private List<Comment> commentList;
+    private String ubication;
     private int viewCount;
 
 }
