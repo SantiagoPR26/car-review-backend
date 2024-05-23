@@ -9,12 +9,22 @@ import dev.uni.infrastructure.repository.comment.CommentDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @AllArgsConstructor
 @Service
 public class CommentApplication {
 
     private final CommentService commentService;
     private final CarService carService;
+
+    public List<Comment> getAll() {
+        return commentService.getAll();
+    }
+
+    public Comment getOne(int id) {
+        return commentService.getOne(id);
+    }
 
     public Comment saveComment(Comment comment) {
         CommentDto commentDto = new CommentDto(comment.getContent(),
