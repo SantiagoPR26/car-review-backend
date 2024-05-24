@@ -4,6 +4,7 @@ import dev.uni.domain.entities.Car;
 import dev.uni.domain.entities.Comment;
 import dev.uni.domain.services.CarService;
 import dev.uni.infrastructure.repository.car.CarDto;
+import dev.uni.infrastructure.repository.comment.CommentDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -43,5 +44,21 @@ public class CarApplication {
 
     public Car getOne(int id) {
         return carService.getOne(id);
+    }
+
+    public void updateviewCount(int id) {
+        Car car = carService.getOne(id);
+        CarDto carDto = new CarDto(car.getPrice(),
+                car.getPhoto(),
+                car.getName(),
+                car.getKm(),
+                car.getBrand(),
+                car.getModel(),
+                car.getPlate(),
+                car.getCommentList(),
+                car.getUbication(),
+                car.getViewCount());
+        carDto.setViewCount(car.getViewCount() + 1);
+        carService.update(id, carDto);
     }
 }

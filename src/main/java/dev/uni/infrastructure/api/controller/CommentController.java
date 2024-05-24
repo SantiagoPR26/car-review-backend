@@ -1,7 +1,6 @@
 package dev.uni.infrastructure.api.controller;
 
 import dev.uni.application.CommentApplication;
-import dev.uni.domain.entities.Car;
 import dev.uni.domain.entities.Comment;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,6 +25,11 @@ public class CommentController {
     @GetMapping
     public ResponseEntity<List<Comment>> getAll() {
         return ResponseEntity.ok(commentApplication.getAll());
+    }
+
+    @GetMapping("getByCarId")
+    public ResponseEntity<List<Comment>> getAllCommentsByCarId(@RequestParam int id) {
+        return ResponseEntity.ok(commentApplication.getAllCommentsByCarId(id));
     }
 
     @GetMapping("/one")

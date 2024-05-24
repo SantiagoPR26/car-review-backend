@@ -22,6 +22,10 @@ public class CommentApplication {
         return commentService.getAll();
     }
 
+    public List<Comment> getAllCommentsByCarId(int id) {
+        return commentService.getAllCommentsByCarId(id);
+    }
+
     public Comment getOne(int id) {
         return commentService.getOne(id);
     }

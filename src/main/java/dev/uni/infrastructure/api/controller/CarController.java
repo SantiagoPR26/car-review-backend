@@ -33,4 +33,9 @@ public class CarController {
     public ResponseEntity<Car> getOne(@RequestParam int id) {
         return new ResponseEntity<>(carApplication.getOne(id), HttpStatus.OK);
     }
+
+    @PutMapping("/viewCount")
+    public void addViewCount(@RequestParam int id) {
+        carApplication.updateviewCount(id);
+    }
 }
