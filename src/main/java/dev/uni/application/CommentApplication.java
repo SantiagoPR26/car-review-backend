@@ -9,6 +9,7 @@ import dev.uni.infrastructure.repository.comment.CommentDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @AllArgsConstructor
@@ -32,7 +33,7 @@ public class CommentApplication {
 
     public Comment saveComment(Comment comment) {
         CommentDto commentDto = new CommentDto(comment.getContent(),
-                comment.getDate(),
+                LocalDateTime.now(),
                 comment.getUsername(),
                 comment.getLike(),
                 comment.getDislike(),
