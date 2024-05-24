@@ -36,6 +36,6 @@ public class CarController {
 
     @PutMapping("/viewCount")
     public void addViewCount(@RequestParam int id) {
-        carApplication.updateviewCount(id);
+        carApplication.updateViewCount(id);
     }
 }

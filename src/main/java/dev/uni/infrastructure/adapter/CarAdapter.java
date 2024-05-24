@@ -70,6 +70,7 @@ public class CarAdapter implements CarService {
         car.setPlate(carDto.getPlate());
         car.setUbication(carDto.getUbication());
         car.setCommentList(carDto.getCommentList());
+        car.setViewCount(carDto.getViewCount());
         carRepository.save(car);
     }
 

@@ -46,7 +46,7 @@ public class CarApplication {
         return carService.getOne(id);
     }
 
-    public void updateviewCount(int id) {
+    public void updateViewCount(int id) {
         Car car = carService.getOne(id);
         CarDto carDto = new CarDto(car.getPrice(),
                 car.getPhoto(),
