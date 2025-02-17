@@ -34,6 +34,11 @@ public class CommentAdapter implements CommentService {
     }
 
     @Override
+    public List<Comment> getAllCommentsByCarId(int id) {
+        return commentRepository.findAllByCarId(id);
+    }
+
+    @Override
     public Comment getOne(int id) {
         return commentRepository.findById(id).get();
     }

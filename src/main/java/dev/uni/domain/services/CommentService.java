@@ -11,6 +11,8 @@ public interface CommentService {
 
     List<Comment> getAll();
 
+    List<Comment> getAllCommentsByCarId(int id);
+
     Comment getOne(int id);
 
     void update(int id, CommentDto commentDto);

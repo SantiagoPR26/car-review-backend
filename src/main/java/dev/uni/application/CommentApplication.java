@@ -9,6 +9,9 @@ import dev.uni.infrastructure.repository.comment.CommentDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 @AllArgsConstructor
 @Service
 public class CommentApplication {
@@ -16,9 +19,21 @@ public class CommentApplication {
     private final CommentService commentService;
     private final CarService carService;
 
+    public List<Comment> getAll() {
+        return commentService.getAll();
+    }
+
+    public List<Comment> getAllCommentsByCarId(int id) {
+        return commentService.getAllCommentsByCarId(id);
+    }
+
+    public Comment getOne(int id) {
+        return commentService.getOne(id);
+    }
+
     public Comment saveComment(Comment comment) {
         CommentDto commentDto = new CommentDto(comment.getContent(),
-                comment.getDate(),
+                LocalDateTime.now(),
                 comment.getUsername(),
                 comment.getLike(),
                 comment.getDislike(),
@@ -30,12 +45,15 @@ public class CommentApplication {
     public void addComment(int id, Comment comment) {
         Car car = carService.getOne(id);
         car.getCommentList().add(comment);
-        CarDto carDto = new CarDto(car.getPhoto(),
+        CarDto carDto = new CarDto(car.getPrice(),
+                car.getPhoto(),
                 car.getName(),
+                car.getKm(),
                 car.getBrand(),
                 car.getModel(),
                 car.getPlate(),
                 car.getCommentList(),
+                car.getUbication(),
                 car.getViewCount());
         carService.update(id, carDto);
     }

@@ -7,17 +7,34 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
 @AllArgsConstructor
 @RestController
-@RequestMapping("/comment")
+@RequestMapping("api/comment")
 public class CommentController {
 
     private final CommentApplication commentApplication;
 
-    @PostMapping("save")
+    @PostMapping("/save")
     public ResponseEntity<Comment> saveComment(@RequestBody Comment comment) {
         return new ResponseEntity<>(commentApplication.saveComment(comment), HttpStatus.CREATED);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Comment>> getAll() {
+        return ResponseEntity.ok(commentApplication.getAll());
+    }
+
+    @GetMapping("getByCarId")
+    public ResponseEntity<List<Comment>> getAllCommentsByCarId(@RequestParam int id) {
+        return ResponseEntity.ok(commentApplication.getAllCommentsByCarId(id));
+    }
+
+    @GetMapping("/one")
+    public ResponseEntity<Comment> getOne(@RequestParam int id) {
+        return new ResponseEntity<>(commentApplication.getOne(id), HttpStatus.OK);
     }
 
     @PutMapping("/like")
